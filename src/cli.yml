@@ -1,0 +1,11 @@
+name: shellio
+version: "0.0.1"
+author: jiko21
+about: cli snapshot testing tool
+args:
+  - SPECFILE:
+      short: s
+      long: specfile
+      help: shellio spec file
+      takes_value: true
+
