@@ -22,7 +22,11 @@ pub mod util {
         use super::*;
         #[test]
         fn test_execute_command() {
-            assert_eq!(execute_command("echo test"), "test\r\n");
+            if cfg!(target_os = "windows") {
+                assert_eq!(execute_command("echo test"), "test\r\n");
+            } else {
+                assert_eq!(execute_command("echo test"), "test\n");
+            }
         }
     }
 }
