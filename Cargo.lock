@@ -125,7 +125,14 @@ dependencies = [
  "clap",
  "serde",
  "serde_json",
+ "similar",
 ]
+
+[[package]]
+name = "similar"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6bf11003835e462f07851028082d2a1c89d956180ce4b4b50e07fb085ec4131a"
 
 [[package]]
 name = "strsim"
