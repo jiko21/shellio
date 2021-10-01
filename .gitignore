@@ -1,3 +1,4 @@
 /target
 .idea/
 shellio.iml
+.spec/
