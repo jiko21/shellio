@@ -1,23 +1,26 @@
 mod util;
-
-extern crate serde;
-extern crate serde_json;
+mod spec;
 
 use clap::{App, load_yaml};
-use serde::{Deserialize, Serialize};
 use std::fs;
+use similar::{ChangeTag, TextDiff};
+use crate::spec::spec::SpecFile;
+use std::fs::File;
+use std::io::{BufWriter, Write};
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Spec {
-    describe: String,
-    command: String,
-    results: String,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct SpecFile {
-    name: String,
-    specs: Vec<Spec>,
+fn save_spec(path: &str, spec: SpecFile) -> Result<(), String> {
+    let spec_file = serde_json::to_string_pretty(&spec).unwrap();
+    let mut file = match File::create(&path) {
+        Ok(f) => f,
+        Err(_) => {
+            return Err("Cannot save file".to_string());
+        }
+    };
+    let mut writer = BufWriter::new(file);
+    match writer.write(&spec_file.as_bytes()) {
+        Ok(_) => Ok(()),
+        Err(_) => Err("Cannot save file".to_string())
+    }
 }
 
 fn main() {
@@ -33,11 +36,13 @@ fn main() {
             panic!("Cannot read file: {}. You should add shellio.spec.json or specify shellio spec file path.", spec_path);
         }
     };
-    let spec_file: SpecFile = match serde_json::from_str(config.as_str()) {
-        Ok(str) => str,
+    let mut spec_file = SpecFile::new(config.as_str());
+    let summary = spec_file.execute();
+    match save_spec(spec_path, spec_file) {
+        Ok(_) => {},
         Err(e) => {
-            panic!("Error while parsing specfile: {}", e)
+            panic!(e);
         }
     };
-    println!("{:?}", spec_file);
+    println!("Total: {}\t Success: {}\t Fail: {}\tNew: {}", summary.total, summary.success, summary.fail, summary.new);
 }
