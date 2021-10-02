@@ -1,9 +1,10 @@
 {
+  "name": "sample",
   "specs": [
     {
-      "describe": "",
-      "command": "",
-      "results": ""
+      "describe": "sample1",
+      "command": "ls",
+      "results": ".spec/sample1_ls.snapshot"
     }
   ]
 }
