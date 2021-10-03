@@ -9,7 +9,7 @@ use std::fs::File;
 use std::io::{BufWriter, Write};
 
 fn save_spec(path: &str, spec: SpecFile) -> Result<(), String> {
-    let spec_file = serde_json::to_string_pretty(&spec).unwrap();
+    let spec_file = format!("{}\n", serde_json::to_string_pretty(&spec).unwrap());
     let mut file = match File::create(&path) {
         Ok(f) => f,
         Err(_) => {
