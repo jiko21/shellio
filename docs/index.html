@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai-sublime.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <main>
+    <div class="jumbo-wrapper">
+      <img class="jumbo-wrapper-img" src="jumbo.png" alt="shellio">
+    </div>
+    <div class="contents">
+      <section id="what-is-shellio">
+        <div class="section-text section-content section-content-left">
+          <h2>What is shellio?</h2>
+          <p>
+            Shellio is snapshot testing tools for cli application.  You can confirm that the output of you cli apps is not changed with shellio.
+
+  Shellio can be used for any platform; Windows, mac, linux.
+          </p>
+        </div>
+        <img src="shellio_cli.png" alt="shellio exec image" class="section-content section-content-right"/>
+      </section>
+      <section id="how" class="flex-reverse">
+        <pre class="section-content section-content-left">
+          <code class="language-json hljs monokai-sublime">{
+  "name": "test name",
+  "specs": [
+    {
+      "describe": "title of test case",
+      "command": "command to execute",
+      "results": ".spec/sample1_ls.snapshot"
+    }
+  ]
+}</code>
+        </pre>
+        <div class="section-text section-content section-content-right">
+          <h2>How to write test code?</h2>
+          <p>
+            All you have to do is write config file called shellio.spec.json. You can specify the command to test, and test case.
+          </p>
+        </div>
+      </section>
+      <section id="option">
+        <div class="section-text section-content section-content-left">
+          <h2>Option</h2>
+          <p>
+            You can specify the spec file with -s or --specfile option when you use shellio.
+          </p>
+        </div>
+        <img src="option.png" alt="option" class="section-content section-content-right"/>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-box">
+      <a class="footer-link" href="https://github.com/jiko21/shellio">GitHub</a>
+      <span>&copy; <a class="footer-link" href="https://github.com/jiko21">jiko21</a></span>
+    </div>
+  </footer>
+</body>
+</html>
